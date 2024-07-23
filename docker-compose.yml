@@ -1,6 +1,6 @@
 services:
   hackmann-website:
-    image: "hackweb" # Will host this soon
+    image: "alexreynen/hackmannwebsite:latest"
     container_name: HackWeb
     ports:
       - "3000:3000"
