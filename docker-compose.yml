@@ -1,5 +1,6 @@
 services:
   hackmann-website:
+    # image: "alexreynen/hackmannwebsite:dev"
     image: "alexreynen/hackmannwebsite:latest"
     container_name: HackWeb
     ports:
