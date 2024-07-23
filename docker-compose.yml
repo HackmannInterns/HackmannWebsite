@@ -1,0 +1,7 @@
+services:
+  hackmann-website:
+    image: "hackweb" # Will host this soon
+    container_name: HackWeb
+    ports:
+      - "3000:3000"
+    restart: unless-stopped
