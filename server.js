@@ -14,7 +14,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/about", (req, res) => {
-  res.render("about", { message: "I Love Lain" });
+  res.render("about");
 });
 
 app.listen(port, () => {
