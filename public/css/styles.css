@@ -1,0 +1,17 @@
+/*  openBaSeD.css */
+
+#grid-container {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    display: grid;
+    grid-template-columns: 10vw 90vw;
+    gap: 10px;
+    padding: 10px;
+}
+
+#home {
+    background-color: #3d81c2;
+    text-align: center;
+    padding: 20px 0;
+    font-size: 30px;
+  }
