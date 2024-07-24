@@ -2,18 +2,12 @@
   list-style-type: none;
   background-color: #3d77b0;
   padding: 10px;
-  width: 200px; /* You might adjust this based on your design */
+  width: 200px;
   height: 100vh;
   border-width: 0px;
   border-right-width: 10px;
   border-style: solid;
   border-color: #203e5b;
-}
-
-@media only screen and (max-width: 768px) {
-  #nav-bar {
-    display: none;
-  }
 }
 
 #nav-bar h2 {
@@ -22,11 +16,10 @@
 
 .return {
   display: none;
-  color: red;
+  position: absolute;
 }
 
 #nav-bar p {
-  color: red;
   text-align: right;
   font-size: larger;
   float: right;
@@ -42,4 +35,25 @@
   bottom: 0;
   left: 0;
   padding: 10px;
+}
+
+.return,
+.hide {
+  display: inline-block;
+  padding: 10px;
+  font-size: 16px;
+  font-family: Arial, sans-serif;
+  color: white;
+  background-color: #02060c;
+  border: none;
+  border-radius: 5px;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+@media (min-width: 768px) {
+  #nav-bar > p {
+    display: none;
+  }
 }
