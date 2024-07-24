@@ -19,8 +19,23 @@
   border-color: #203e5b;
 }
 
+#nav-bar h2 {
+  color: gainsboro;
+}
+
+#nav-bar a {
+  /* color: gainsboro; */
+  padding-left: 10px;
+}
+
+#nav-bar img {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
 #content {
-  color: white;
+  color: gainsboro;
   text-align: center;
   font-size: 30px;
   flex: 1; /* Allows #content to take up the remaining space */
@@ -30,7 +45,8 @@ body {
   background-color: #112131;
 }
 
-body, html {
+body,
+html {
   margin: 0;
   padding: 0;
   height: 100%;
