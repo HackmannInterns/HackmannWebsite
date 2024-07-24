@@ -2,16 +2,21 @@
 
 #grid-container {
     font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
     display: grid;
-    grid-template-columns: 10vw 90vw;
+    grid-template-columns: 10vw auto;
     gap: 10px;
-    padding: 10px;
+    
+}
+
+#nav-bar {
+    list-style-type: none;
+    background-color: #5f98da;
+    padding: 5px ;
 }
 
 #home {
-    background-color: #3d81c2;
+    background-color: #112131;
+    color:white;
     text-align: center;
-    padding: 20px 0;
     font-size: 30px;
   }
