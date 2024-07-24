@@ -25,10 +25,6 @@ app.get("/summer-2024", (req, res) => {
   res.render("summer-2024");
 });
 
-app.get("/John", (req, res) => {
-  res.render("John", { message: "Lain is Mid" });
-});
-
 app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);
 });

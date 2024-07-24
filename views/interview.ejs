@@ -1,34 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <style>
-        #content a{
-            color: orange;
-        }
-    </style>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My EJS File</title>
-    <link rel="stylesheet" href="css/styles.css" />
-  </head>
 
-  <body>
-    <div id="flex-container">
-      <div><%- include('partials/navbar'); %></div>
-      <div id="content">
-        <h1><%= 'Get An Interview' %></h1>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Interview</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
 
-        
-        <h3>
-            How to apply
-        </h3>
-        <p>
-            Write something about why you want to work with this any required accomodations and your primary areas of interest.
-            Attach this along with your resume in an email to 
-            <a href="mailto:hackmanninterns@gmail.com" target="_blank">hackmanninterns@gmail.com</a>
-        </p>
+<body>
+  <div id="flex-container">
+    <div><%- include('partials/navbar'); %></div>
+    <div id="content">
+      <h1>
+        <%= 'Get An Interview' %>
+      </h1>
 
-      </div>
+
+      <h3>
+        How to apply
+      </h3>
+      <p>
+        Write something about why you want to work with this any required accomodations and your primary areas of
+        interest.
+        Attach this along with your resume in an email to
+        <a href="mailto:hackmanninterns@gmail.com" target="_blank">hackmanninterns@gmail.com</a>
+      </p>
+
     </div>
-  </body>
+  </div>
+</body>
+
 </html>
