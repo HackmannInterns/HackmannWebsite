@@ -13,6 +13,10 @@ app.get("/", (req, res) => {
   res.render("index", { message: "I Love Lain" });
 });
 
+app.get("/about", (req, res) => {
+  res.render("about", { message: "I Love Lain" });
+});
+
 app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);
 });
