@@ -1,33 +1,45 @@
 #nav-bar {
-    list-style-type: none;
-    background-color: #3d77b0;
-    padding: 10px;
-    width: 200px; /* You might adjust this based on your design */
-    height: 100vh;
-    border-width: 0px;
-    border-right-width: 10px;
-    border-style: solid;
-    border-color: #203e5b;
+  list-style-type: none;
+  background-color: #3d77b0;
+  padding: 10px;
+  width: 200px; /* You might adjust this based on your design */
+  height: 100vh;
+  border-width: 0px;
+  border-right-width: 10px;
+  border-style: solid;
+  border-color: #203e5b;
+}
+
+@media only screen and (max-width: 768px) {
+  #nav-bar {
+    display: none;
   }
-  
-  @media only screen and (max-width: 768px) {
-    #nav-bar {
-      display: none;
-    }
-  }
-  
-  #nav-bar h2 {
-    color: gainsboro;
-  }
-  
-  #nav-bar a {
-    /* color: gainsboro; */
-    padding-left: 10px;
-  }
-  
-  #nav-bar img {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    padding: 10px;
-  }
+}
+
+#nav-bar h2 {
+  color: gainsboro;
+}
+
+.return {
+  display: none;
+  color: red;
+}
+
+#nav-bar p {
+  color: red;
+  text-align: right;
+  font-size: larger;
+  float: right;
+}
+
+#nav-bar a {
+  /* color: gainsboro; */
+  padding-left: 10px;
+}
+
+#nav-bar img {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 10px;
+}
