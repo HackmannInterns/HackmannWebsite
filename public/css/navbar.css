@@ -14,6 +14,7 @@
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 1;
 }
 
 #nav-bar h2 {
@@ -22,6 +23,7 @@
 
 .return {
   display: none;
+  position: absolute;
 }
 
 #nav-bar p {
@@ -68,6 +70,7 @@
   border-radius: 5px;
   text-align: center;
   cursor: pointer;
+  opacity: 0.5;
 }
 
 @media (min-width: 768px) {

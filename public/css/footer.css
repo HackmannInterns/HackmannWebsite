@@ -1,0 +1,13 @@
+footer {
+  position: fixed;
+  bottom: 0;
+  width: calc(100% - 230px);
+  background-color: #203e5b;
+  color: white;
+  text-align: center;
+  left: 230px;
+}
+
+a {
+  color: rgb(255, 126, 20);
+}
