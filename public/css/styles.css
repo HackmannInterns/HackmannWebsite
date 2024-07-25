@@ -11,9 +11,11 @@
   color: gainsboro;
   text-align: center;
   font-size: 30px;
-  flex: 1; /* Allows #content to take up the remaining space */
-  margin-left: 230px; /* Offset for the fixed navbar */
-  overflow: auto; /* Enable scrolling if content is too large */
+  flex: 1;
+  margin-left: 230px;
+  overflow: auto;
+  padding: 10px;
+  padding-top: 0px;
 }
 
 @media (max-width: 768px) {
