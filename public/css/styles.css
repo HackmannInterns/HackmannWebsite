@@ -22,6 +22,10 @@
   }
 }
 
+#content p {
+  text-align: left;
+}
+
 #content a {
   color: orange;
 }
