@@ -31,9 +31,18 @@
 }
 
 #nav-bar a {
-  /* color: gainsboro; */
   padding-left: 10px;
+  font-size: 20px;
 }
+
+#nav-bar a:link {
+  color:  rgb(255, 126, 20);
+}
+
+#nav-bar a:visited {
+  color: #0d1e7e;
+}
+
 
 #links {
   margin-bottom: 220px;

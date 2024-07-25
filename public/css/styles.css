@@ -36,3 +36,15 @@ html {
   padding: 0;
   height: 100%;
 }
+
+#banner {
+  width: 600; 
+  height: 200;
+}
+
+@media (max-width: 768px) {
+  #banner {
+    width: 60%;
+    height: 20%
+  }
+}
