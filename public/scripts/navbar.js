@@ -15,7 +15,7 @@ function hideNavBarOnSmallScreens() {
     navbar.style.display = "none";
     nav_hide();
     hider.style.display = "block";
-} else {
+  } else {
     navbar.style.display = "block"; // Reset display when window is larger than 768px
     nav_return();
     hider.style.display = "none";
