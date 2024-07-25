@@ -2,20 +2,20 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Title</title>
-    <link rel="icon" type="image/png" sizes="32x32" href="images/hackfavicon.png">
-    <link rel="stylesheet" href="css/styles.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DEFAULT TITLE</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="images/hackfavicon.png">
+  <link rel="stylesheet" href="css/styles.css" />
 </head>
 
 <body>
-    <div id="flex-container">
-      <div><%- include('partials/navbar'); %></div>
-      <div id="content">
-        <h1>Lorem Ipsum</h1>
-      </div>
+  <div id="flex-container">
+    <div><%- include('partials/navbar'); %></div>
+    <div id="content">
+      <h1>Lorem Ipsum</h1>
     </div>
+  </div>
 </body>
 
 </html>
