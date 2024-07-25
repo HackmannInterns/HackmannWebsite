@@ -1,5 +1,5 @@
-var hider = document.querySelector("#nav-bar > p");
-var returner = document.querySelector("#flex-container > div:nth-child(1) > p");
+var hider = document.querySelector(".hide");
+var returner = document.querySelector(".return");
 var navbar = document.querySelector("#nav-bar");
 function nav_hide() {
   navbar.style.display = "none";

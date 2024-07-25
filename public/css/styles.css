@@ -4,7 +4,7 @@
   font-family: Arial, sans-serif;
   display: flex;
   height: 100vh;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 #content {
@@ -12,6 +12,14 @@
   text-align: center;
   font-size: 30px;
   flex: 1; /* Allows #content to take up the remaining space */
+  margin-left: 230px; /* Offset for the fixed navbar */
+  overflow: auto; /* Enable scrolling if content is too large */
+}
+
+@media (max-width: 768px) {
+  #content {
+    margin-left: 0px;
+  }
 }
 
 #content a {

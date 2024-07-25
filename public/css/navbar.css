@@ -2,12 +2,18 @@
   list-style-type: none;
   background-color: #3d77b0;
   padding: 10px;
-  width: 200px;
+  padding-bottom: 0px;
+  width: 230px;
   height: 100vh;
   border-width: 0px;
   border-right-width: 10px;
   border-style: solid;
   border-color: #203e5b;
+  box-sizing: border-box;
+  overflow-y: auto;
+  position: fixed;
+  top: 0;
+  left: 0;
 }
 
 #nav-bar h2 {
@@ -16,7 +22,6 @@
 
 .return {
   display: none;
-  position: absolute;
 }
 
 #nav-bar p {
@@ -30,11 +35,16 @@
   padding-left: 10px;
 }
 
+#links {
+  margin-bottom: 220px;
+}
+
 #nav-bar img {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   left: 0;
   padding: 10px;
+  background-color: #3d77b0;
 }
 
 .return,
@@ -49,7 +59,6 @@
   border-radius: 5px;
   text-align: center;
   cursor: pointer;
-  transition: background-color 0.3s, transform 0.2s;
 }
 
 @media (min-width: 768px) {
