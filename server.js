@@ -22,7 +22,7 @@ app.get("/interview", (req, res) => {
 });
 
 app.get("/summer-2024", (req, res) => {
-  res.render("summer-2024");
+  res.render("summer-2024", { q: req.query.q });
 });
 
 app.listen(port, () => {
