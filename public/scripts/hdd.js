@@ -43,6 +43,16 @@ window.onload = function () {
   content.appendChild(document.createElement("div"));
 
   add_clothes_arrow();
+
+  content.appendChild(document.createElement("div"));
+
+  const battleButton = document.createElement("button");
+  battleButton.id = "battle"
+  battleButton.textContent = "Battle!";
+  battleButton.onclick = battle;
+  content.appendChild(battleButton);
+
+  content.appendChild(document.createElement("div"));
 };
 
 function add_head_arrow() {
@@ -275,11 +285,12 @@ function battle() {
     "#forwardHead",
     "#backwardClothes",
     "#forwardClothes",
+    "#battle",
   ];
   for (const selector of buttons) {
     document.querySelector(selector).style.display = "none";
   }
-  
+
   hack_modifiers.push(".base");
   for (const image of hack_modifiers) {
     document.querySelector(image).style.top = "500px";
