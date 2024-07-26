@@ -3,23 +3,22 @@ window.onload = function () {
   replaceChildrenById("content");
   wipefooter("Hackmann Dressup Doll");
 
-  const hack_urls = [
-    ["https://images2.imgbox.com/76/1d/SDahVwGW_o.png", "base"],
-    ["https://images2.imgbox.com/b5/8e/HSt8kq29_o.png", "xxxhair"],
-    ["https://images2.imgbox.com/f3/2b/lKvwtqjf_o.png", "priest"],
-    ["https://images2.imgbox.com/2a/1d/Opsyo20n_o.png", "drug"],
-    ["https://images2.imgbox.com/95/29/DmZI8PAs_o.png", "drip"],
-    ["https://images2.imgbox.com/98/58/fs3qnJD7_o.png", "gasmask"],
-    ["https://images2.imgbox.com/11/7c/cq4PeIXR_o.png", "bible"],
-    ["https://images2.imgbox.com/be/4a/38wqkZVf_o.png", "pokehat"],
-  ];
   const content = document.getElementById("content");
   content.style.display = "grid";
   content.style.gridTemplateColumns = "auto 33% auto";
   content.style.justifyContent = "center";
 
-  
-  for (const url_tup of hack_urls) {
+
+  // to encode, put in the array here as hack_urls
+
+  // const jsonString = JSON.stringify(hack_urls);
+
+  // Encode as Base64
+  const encodedString = "W1siaHR0cHM6Ly9pbWFnZXMyLmltZ2JveC5jb20vNzYvMWQvU0RhaFZ3R1dfby5wbmciLCJiYXNlIl0sWyJodHRwczovL2ltYWdlczIuaW1nYm94LmNvbS9iNS84ZS9IU3Q4a3EyOV9vLnBuZyIsInh4eGhhaXIiXSxbImh0dHBzOi8vaW1hZ2VzMi5pbWdib3guY29tL2YzLzJiL2xLdnd0cWpmX28ucG5nIiwicHJpZXN0Il0sWyJodHRwczovL2ltYWdlczIuaW1nYm94LmNvbS8yYS8xZC9PcHN5bzIwbl9vLnBuZyIsImRydWciXSxbImh0dHBzOi8vaW1hZ2VzMi5pbWdib3guY29tLzk1LzI5L0RtWkk4UEFzX28ucG5nIiwiZHJpcCJdLFsiaHR0cHM6Ly9pbWFnZXMyLmltZ2JveC5jb20vOTgvNTgvZnMzcW5KRDdfby5wbmciLCJnYXNtYXNrIl0sWyJodHRwczovL2ltYWdlczIuaW1nYm94LmNvbS8xMS83Yy9jcTRQZUlYUl9vLnBuZyIsImJpYmxlIl0sWyJodHRwczovL2ltYWdlczIuaW1nYm94LmNvbS9iZS80YS8zOHdxa1pWZl9vLnBuZyIsInBva2VoYXQiXV0=";
+  const decodedString = atob(encodedString);
+  const decodedArray = JSON.parse(decodedString);
+
+  for (const url_tup of decodedArray) {
     const img = appendById("content", url_tup); // Assuming "content" is the ID
     centerHorizontally(img); // Ensure this function is defined
   }
