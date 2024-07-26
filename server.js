@@ -10,7 +10,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.set("views", path.join(__dirname, "views"));
 
 app.get("/", (req, res) => {
-  res.render("index", { message: "I Love Lain" });
+  res.render("index");
 });
 
 app.get("/about", (req, res) => {
@@ -23,6 +23,10 @@ app.get("/interview", (req, res) => {
 
 app.get("/summer-2024", (req, res) => {
   res.render("summer-2024", { q: req.query.q });
+});
+
+app.use((req, res) => {
+  res.status(404).render("error");
 });
 
 app.listen(port, () => {
