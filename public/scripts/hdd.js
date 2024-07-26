@@ -32,7 +32,7 @@ window.onload = function () {
   add_head_arrow();
 
   add_back_acc_arrow();
-  
+
   content.appendChild(document.createElement("div"));
 
   add_acc_arrow();
@@ -135,23 +135,36 @@ function cycle(event) {
     ".bible",
   ];
 
-  const hack_modifiers_clothes = [".priest", ".drug", ".drip"];
+  const hack_modifiers_clothes = ["none", ".priest", ".drug", ".drip"];
 
-  const hack_modifiers_head = [".xxxhair", ".gasmask", ".pokehat"];
+  const hack_modifiers_head = ["none", ".xxxhair", ".gasmask", ".pokehat"];
 
-  const hack_modifiers_access = [".bible"];
+  const hack_modifiers_access = ["none", ".bible"];
 
-  hack_modifiers.forEach((element) => {
-    document.querySelector(element).style.display = "none";
-  });
-
-  //   if (ctr > 0) {
-  //     document.querySelector(hack_modifiers[ctr - 1]).style.display = "none";
-  //   } else if (ctr == 0) {
-  //     document.querySelector(
-  //       hack_modifiers[hack_modifiers.length - 1]
-  //     ).style.display = "none";
-  //   }
+  if (clickedButton.id == "forwardHead" || clickedButton.id == "backwardHead") {
+    hack_modifiers_head.forEach((element) => {
+      if (element != "none") {
+        document.querySelector(element).style.display = "none";
+      }
+    });
+  }
+  if (clickedButton.id == "forwardAcc" || clickedButton.id == "backwardAcc") {
+    hack_modifiers_access.forEach((element) => {
+      if (element != "none") {
+        document.querySelector(element).style.display = "none";
+      }
+    });
+  }
+  if (
+    clickedButton.id == "forwardClothes" ||
+    clickedButton.id == "backwardClothes"
+  ) {
+    hack_modifiers_clothes.forEach((element) => {
+      if (element != "none") {
+        document.querySelector(element).style.display = "none";
+      }
+    });
+  }
 
   if (clickedButton.id == "forwardHead") {
     headCtr = (headCtr + 1) % hack_modifiers_head.length;
@@ -180,19 +193,38 @@ function cycle(event) {
     }
   }
 
-  const headElement = document.querySelector(hack_modifiers_head[headCtr]);
-  if (headElement) {
-    headElement.style.display = "block";
+  if (hack_modifiers_head[headCtr] != "none") {
+    const headElement = document.querySelector(hack_modifiers_head[headCtr]);
+    if (
+      (headElement && clickedButton.id == "forwardHead") ||
+      clickedButton.id == "backwardHead"
+    ) {
+      headElement.style.display = "block";
+    }
   }
 
-  const accessElement = document.querySelector(hack_modifiers_access[accessCtr]);
-  if (accessElement) {
-    accessElement.style.display = "block";
+  if (hack_modifiers_access[accessCtr] != "none") {
+    const accessElement = document.querySelector(
+      hack_modifiers_access[accessCtr]
+    );
+    if (
+      (accessElement && clickedButton.id == "forwardAcc") ||
+      clickedButton.id == "backwardAcc"
+    ) {
+      accessElement.style.display = "block";
+    }
   }
 
-  const clothesElement = document.querySelector(hack_modifiers_clothes[clothesCtr]);
-  if (clothesElement) {
-    clothesElement.style.display = "block";
+  if (hack_modifiers_clothes[clothesCtr] != "none") {
+    const clothesElement = document.querySelector(
+      hack_modifiers_clothes[clothesCtr]
+    );
+    if (
+      (clothesElement && clickedButton.id == "forwardClothes") ||
+      clickedButton.id == "backwardClothes"
+    ) {
+      clothesElement.style.display = "block";
+    }
   }
 }
 
