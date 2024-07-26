@@ -19,21 +19,38 @@ window.onload = function () {
   }
 
   document.querySelector(".base").style.display = "block";
+
+  add_back_arrow();
   add_arrow();
 };
 
 function add_arrow() {
   const img = document.createElement("img");
   img.src = "https://images2.imgbox.com/55/4f/MQ0iqZOH_o.png";
-  img.onclick = function () {
-    cycle();
+  img.onclick = function (event) {
+    cycle(event);
   };
   const element = document.getElementById("content"); // Use the ID provided
   element.appendChild(img);
+  img.id = "forward";
+}
+
+function add_back_arrow() {
+  const img = document.createElement("img");
+  img.src = "https://images2.imgbox.com/55/4f/MQ0iqZOH_o.png";
+  img.onclick = function (event) {
+    cycle(event);
+  };
+  const element = document.getElementById("content"); // Use the ID provided
+  element.appendChild(img);
+  img.id = "backward";
+  img.style.transform = "scaleX(-1)";
 }
 
 let ctr = 0;
-function cycle() {
+function cycle(event) {
+  const clickedButton = event.target;
+
   const hack_modifiers = [
     ".xxxhair",
     ".priest",
@@ -43,12 +60,25 @@ function cycle() {
     ".bible",
   ];
 
-  if (ctr > 0) {
-    document.querySelector(hack_modifiers[ctr - 1]).style.display = "none";
-  } else if (ctr == 0) {
-    document.querySelector(
-      hack_modifiers[hack_modifiers.length - 1]
-    ).style.display = "none";
+  hack_modifiers.forEach((element) => {
+    document.querySelector(element).style.display = "none";
+  });
+
+  //   if (ctr > 0) {
+  //     document.querySelector(hack_modifiers[ctr - 1]).style.display = "none";
+  //   } else if (ctr == 0) {
+  //     document.querySelector(
+  //       hack_modifiers[hack_modifiers.length - 1]
+  //     ).style.display = "none";
+  //   }
+
+  if (clickedButton.id == "forward") {
+    ctr = (ctr + 1) % hack_modifiers.length;
+  } else if (clickedButton.id == "backward") {
+    ctr--;
+    if (ctr < 0) {
+      ctr = hack_modifiers.length - 1;
+    }
   }
 
   const currentElement = document.querySelector(hack_modifiers[ctr]);
@@ -56,7 +86,7 @@ function cycle() {
     currentElement.style.display = "block";
   }
 
-  ctr = (ctr + 1) % hack_modifiers.length;
+  console.log(clickedButton.id + " " + ctr);
 }
 
 function clearPage() {
