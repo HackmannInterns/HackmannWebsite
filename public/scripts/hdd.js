@@ -6,7 +6,7 @@ window.onload = function () {
   const content = document.getElementById("content");
   content.style.display = "grid";
   content.style.gridTemplateColumns = "auto 20% auto";
-  content.style.gridTemplateRows = "115px 70px 70px"
+  content.style.gridTemplateRows = "115px 70px 70px";
   content.style.justifyContent = "center";
 
   // to encode, put in the array here as hack_urls
@@ -79,7 +79,6 @@ function add_acc_arrow() {
   const element = document.getElementById("content"); // Use the ID provided
   element.appendChild(img);
   img.id = "forwardAcc";
-
 }
 
 function add_back_acc_arrow() {
@@ -92,7 +91,6 @@ function add_back_acc_arrow() {
   element.appendChild(img);
   img.id = "backwardAcc";
   img.style.transform = "scaleX(-1)";
-
 }
 
 function add_clothes_arrow() {
@@ -104,7 +102,6 @@ function add_clothes_arrow() {
   const element = document.getElementById("content"); // Use the ID provided
   element.appendChild(img);
   img.id = "forwardClothes";
-
 }
 
 function add_back_clothes_arrow() {
@@ -117,24 +114,23 @@ function add_back_clothes_arrow() {
   element.appendChild(img);
   img.id = "backwardClothes";
   img.style.transform = "scaleX(-1)";
-
 }
 
 let headCtr = 0;
 let clothesCtr = 0;
 let accessCtr = 0;
+const hack_modifiers = [
+  ".priest",
+  ".drug",
+  ".drip",
+  ".xxxhair",
+  ".gasmask",
+  ".pokehat",
+  ".bible",
+];
+
 function cycle(event) {
   const clickedButton = event.target;
-
-  const hack_modifiers = [
-    ".priest",
-    ".drug",
-    ".drip",
-    ".xxxhair",
-    ".gasmask",
-    ".pokehat",
-    ".bible",
-  ];
 
   const hack_modifiers_clothes = ["none", ".priest", ".drug", ".drip"];
 
@@ -269,4 +265,23 @@ function appendById(id, image) {
   img.style.left = "50%";
   img.style.top = "50px";
   return img;
+}
+
+function battle() {
+  let buttons = [
+    "#backwardAcc",
+    "#forwardAcc",
+    "#backwardHead",
+    "#forwardHead",
+    "#backwardClothes",
+    "#forwardClothes",
+  ];
+  for (const selector of buttons) {
+    document.querySelector(selector).style.display = "none";
+  }
+  
+  hack_modifiers.push(".base");
+  for (const image of hack_modifiers) {
+    document.querySelector(image).style.top = "500px";
+  }
 }
