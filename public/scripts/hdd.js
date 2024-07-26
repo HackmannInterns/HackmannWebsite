@@ -11,6 +11,7 @@ window.onload = function () {
     ["https://images2.imgbox.com/95/29/DmZI8PAs_o.png", "drip"],
     ["https://images2.imgbox.com/98/58/fs3qnJD7_o.png", "gasmask"],
     ["https://images2.imgbox.com/11/7c/cq4PeIXR_o.png", "bible"],
+    ["https://images2.imgbox.com/be/4a/38wqkZVf_o.png", "pokehat"],
   ];
 
   for (const url_tup of hack_urls) {
@@ -58,6 +59,7 @@ function cycle(event) {
     ".drip",
     ".gasmask",
     ".bible",
+    ".pokehat",
   ];
 
   hack_modifiers.forEach((element) => {
@@ -85,8 +87,6 @@ function cycle(event) {
   if (currentElement) {
     currentElement.style.display = "block";
   }
-
-  console.log(clickedButton.id + " " + ctr);
 }
 
 function clearPage() {
@@ -126,5 +126,7 @@ function appendById(id, image) {
 
   img.style.display = "none";
   img.style.position = "absolute";
+  img.style.left = "50%";
+  img.style.top = "50px";
   return img;
 }
