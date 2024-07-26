@@ -6,7 +6,7 @@ window.onload = function () {
   const content = document.getElementById("content");
   content.style.display = "grid";
   content.style.gridTemplateColumns = "auto 20% auto";
-  content.style.gridTemplateRows = "70px 70px 70px"
+  content.style.gridTemplateRows = "115px 70px 70px"
   content.style.justifyContent = "center";
 
   // to encode, put in the array here as hack_urls
@@ -79,7 +79,7 @@ function add_acc_arrow() {
   const element = document.getElementById("content"); // Use the ID provided
   element.appendChild(img);
   img.id = "forwardAcc";
-  img.style.paddingTop = "50px";
+
 }
 
 function add_back_acc_arrow() {
@@ -92,7 +92,7 @@ function add_back_acc_arrow() {
   element.appendChild(img);
   img.id = "backwardAcc";
   img.style.transform = "scaleX(-1)";
-  img.style.paddingTop = "50px";
+
 }
 
 function add_clothes_arrow() {
@@ -104,7 +104,7 @@ function add_clothes_arrow() {
   const element = document.getElementById("content"); // Use the ID provided
   element.appendChild(img);
   img.id = "forwardClothes";
-  img.style.paddingTop = "50px";
+
 }
 
 function add_back_clothes_arrow() {
@@ -117,7 +117,7 @@ function add_back_clothes_arrow() {
   element.appendChild(img);
   img.id = "backwardClothes";
   img.style.transform = "scaleX(-1)";
-  img.style.paddingTop = "50px";
+
 }
 
 let headCtr = 0;
