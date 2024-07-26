@@ -13,16 +13,27 @@ window.onload = function () {
     ["https://images2.imgbox.com/11/7c/cq4PeIXR_o.png", "bible"],
     ["https://images2.imgbox.com/be/4a/38wqkZVf_o.png", "pokehat"],
   ];
+  const content = document.getElementById("content");
+  content.style.display = "grid";
+  content.style.gridTemplateColumns = "auto 33% auto";
+  content.style.justifyContent = "center";
 
+  
   for (const url_tup of hack_urls) {
     const img = appendById("content", url_tup); // Assuming "content" is the ID
     centerHorizontally(img); // Ensure this function is defined
   }
 
-  document.querySelector(".base").style.display = "block";
-
   add_back_arrow();
+
+  document.querySelector(".base").style.display = "block";
+  
+  const divider = document.createElement("div");
+  content.appendChild(divider);
+  
   add_arrow();
+
+  
 };
 
 function add_arrow() {
@@ -34,6 +45,8 @@ function add_arrow() {
   const element = document.getElementById("content"); // Use the ID provided
   element.appendChild(img);
   img.id = "forward";
+  img.style.paddingTop = "50px";
+
 }
 
 function add_back_arrow() {
@@ -46,6 +59,7 @@ function add_back_arrow() {
   element.appendChild(img);
   img.id = "backward";
   img.style.transform = "scaleX(-1)";
+  img.style.paddingTop = "50px";
 }
 
 let ctr = 0;
