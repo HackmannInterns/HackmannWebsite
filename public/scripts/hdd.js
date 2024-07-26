@@ -287,6 +287,7 @@ function battle() {
     "#forwardClothes",
     "#battle",
   ];
+  wipefooter("Hack The World"); //name pending
   for (const selector of buttons) {
     document.querySelector(selector).style.display = "none";
   }
