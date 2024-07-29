@@ -352,6 +352,8 @@ function battle() {
   for (const image of hack_modifiers) {
     document.querySelector(image).style.top = "500px";
   }
+
+  const enemy = new Enemy();
 }
 
 const mainHealthStart = 130;
@@ -382,5 +384,34 @@ function turn() {
     console.log("Enemy did " + dmg + " damage");
     mainHealth = mainHealth - dmg;
     updateHealth(Math.floor((mainHealth / mainHealthStart) * 100));
+  }
+}
+
+class Enemy {
+  array_of_enemies = [
+    ".harhar",
+    ".diff",
+    ".ccp",
+    ".google",
+    ".spaceheater",
+    ".lain",
+  ];
+
+  constructor() {
+    this.img = this.setImage();
+    console.log(this.img);
+    this.element = document.querySelector(this.img);
+    console.log(this.element);
+    this.element.style.display = "block";
+    this.element.style.height = "300px";
+    this.element.style.width = "300px";
+    this.element.style.position = "absolute";
+    this.element.style.left = "calc(50% - 150px)";
+    this.element.style.top = "50px";
+  }
+
+  setImage(min = 0, max = this.array_of_enemies.length) {
+    const rng = Math.floor(Math.random() * (max - min)) + min;
+    return this.array_of_enemies[rng];
   }
 }
