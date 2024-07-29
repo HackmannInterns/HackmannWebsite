@@ -1,11 +1,17 @@
 window.onload = function () {
-  replaceChildrenById("links");
+  // replaceChildrenById("links");
+  document.getElementById("nav-bar").remove();
+  document.querySelector(".return").remove();
+  document.getElementById("content").style.margin = 0;
+  document.querySelector("footer").style.left = 0;
+  document.querySelector("footer").style.width = "100%";
   replaceChildrenById("content");
   wipefooter("Hackmann Dressup Doll");
+  window.removeEventListener("resize", window.hideNavBarOnSmallScreens);
 
   const content = document.getElementById("content");
   content.style.display = "grid";
-  content.style.gridTemplateColumns = "auto 20% auto";
+  content.style.gridTemplateColumns = "auto 250px auto";
   content.style.gridTemplateRows = "115px 70px 70px";
   content.style.justifyContent = "center";
 
@@ -21,7 +27,6 @@ window.onload = function () {
 
   for (const url_tup of decodedArray) {
     const img = appendById("content", url_tup); // Assuming "content" is the ID
-    centerHorizontally(img); // Ensure this function is defined
   }
 
   add_back_head_arrow();
@@ -47,7 +52,7 @@ window.onload = function () {
   content.appendChild(document.createElement("div"));
 
   const battleButton = document.createElement("button");
-  battleButton.id = "battle"
+  battleButton.id = "battle";
   battleButton.textContent = "Battle!";
   battleButton.onclick = battle;
   content.appendChild(battleButton);
@@ -63,7 +68,9 @@ function add_head_arrow() {
   };
   const element = document.getElementById("content"); // Use the ID provided
   element.appendChild(img);
+  // img.style.
   img.id = "forwardHead";
+  img.style.zIndex = 1;
   img.style.paddingTop = "50px";
 }
 
@@ -75,6 +82,7 @@ function add_back_head_arrow() {
   };
   const element = document.getElementById("content"); // Use the ID provided
   element.appendChild(img);
+  img.style.zIndex = 1;
   img.id = "backwardHead";
   img.style.transform = "scaleX(-1)";
   img.style.paddingTop = "50px";
@@ -88,6 +96,7 @@ function add_acc_arrow() {
   };
   const element = document.getElementById("content"); // Use the ID provided
   element.appendChild(img);
+  img.style.zIndex = 1;
   img.id = "forwardAcc";
 }
 
@@ -100,6 +109,7 @@ function add_back_acc_arrow() {
   const element = document.getElementById("content"); // Use the ID provided
   element.appendChild(img);
   img.id = "backwardAcc";
+  img.style.zIndex = 1;
   img.style.transform = "scaleX(-1)";
 }
 
@@ -111,6 +121,7 @@ function add_clothes_arrow() {
   };
   const element = document.getElementById("content"); // Use the ID provided
   element.appendChild(img);
+  img.style.zIndex = 1;
   img.id = "forwardClothes";
 }
 
@@ -122,6 +133,7 @@ function add_back_clothes_arrow() {
   };
   const element = document.getElementById("content"); // Use the ID provided
   element.appendChild(img);
+  img.style.zIndex = 1;
   img.id = "backwardClothes";
   img.style.transform = "scaleX(-1)";
 }
@@ -242,14 +254,7 @@ function clearPage() {
 }
 
 function wipefooter(text) {
-  document.querySelector("footer").textContent = text;
-}
-
-function centerHorizontally(element) {
-  element.style.marginLeft = "auto";
-  element.style.marginRight = "auto";
-  // element.style.display = "block"; // Ensure the element is a block-level element
-  element.style.width = "auto"; // Set a fixed width or use any desired width
+  document.querySelector("footer").innerHTML = text;
 }
 
 //clears children, needs to add a 2nd parameter to replace with
@@ -272,7 +277,7 @@ function appendById(id, image) {
 
   img.style.display = "none";
   img.style.position = "absolute";
-  img.style.left = "50%";
+  img.style.left = "calc(50% - 100px)";
   img.style.top = "50px";
   return img;
 }
