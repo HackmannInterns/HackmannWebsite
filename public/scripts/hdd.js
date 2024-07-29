@@ -323,12 +323,14 @@ function updateHealth(percentage) {
   const mainbar = document.getElementById("main-bar");
   if (healthBars <= 0) {
     mainbar.style.display = "none";
-    console.log("You lose");
     enemy.element.onclick = function() {};
     hack_modifiers.push(".base");
     for (const image of hack_modifiers) {
       document.querySelector(image).style.display = "none";
     }
+    wipefooter("You Lose");
+    document.querySelector("footer").style.color = "red"
+    document.querySelector("footer").style.fontSize = "100px"
   } else {
     healthBarElement.textContent = "█".repeat(healthBars);
     emptyBarElement.textContent = "░".repeat(emptyBars);
@@ -343,9 +345,11 @@ function updateeHealth(percentage) {
   const enemybar = document.getElementById("enemy-bar");
   if (healthBars <= 0) {
     enemybar.style.display = "none";
-    console.log("You Win");
     enemy.element.onclick = function() {};
     enemy.element.style.display = "none";
+    wipefooter("You WIN");
+    document.querySelector("footer").style.color = "green"
+    document.querySelector("footer").style.fontSize = "100px"
   } else {
     healthBarElement.textContent = "█".repeat(healthBars);
     emptyBarElement.textContent = "░".repeat(emptyBars);
