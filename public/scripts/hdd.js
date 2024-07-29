@@ -1,7 +1,10 @@
 window.onload = function () {
   // replaceChildrenById("links");
   document.getElementById("nav-bar").remove();
-  document.querySelector(".return").remove();
+  document.querySelector(".return").style.display = "block";
+  document.querySelector(".return").onclick = function () {
+    window.location.href = "/summer-2024";
+  };
   document.getElementById("content").style.margin = 0;
   document.querySelector("footer").style.left = 0;
   document.querySelector("footer").style.width = "100%";
@@ -71,7 +74,7 @@ function add_head_arrow() {
   // img.style.
   img.id = "forwardHead";
   img.style.zIndex = 1;
-  img.style.paddingTop = "50px";
+  img.style.marginTop = "50px";
 }
 
 function add_back_head_arrow() {
@@ -85,7 +88,7 @@ function add_back_head_arrow() {
   img.style.zIndex = 1;
   img.id = "backwardHead";
   img.style.transform = "scaleX(-1)";
-  img.style.paddingTop = "50px";
+  img.style.marginTop = "50px";
 }
 
 function add_acc_arrow() {
@@ -282,6 +285,38 @@ function appendById(id, image) {
   return img;
 }
 
+function updateHealth(percentage) {
+  const totalBars = 20; // Total number of bars
+  const healthBars = Math.round((percentage / 100) * totalBars);
+  const emptyBars = totalBars - healthBars;
+
+  const healthBarElement = document.getElementById("health-bar");
+  const emptyBarElement = document.getElementById("empty-bar");
+  const mainbar = document.getElementById("main-bar");
+  if (healthBars <= 0) {
+    mainbar.style.display = "none";
+    console.log("You lose");
+  } else {
+    healthBarElement.textContent = "█".repeat(healthBars);
+    emptyBarElement.textContent = "░".repeat(emptyBars);
+  }
+}
+function updateeHealth(percentage) {
+  const totalBars = 20;
+  const healthBars = Math.round((percentage / 100) * totalBars);
+  const emptyBars = totalBars - healthBars;
+  const healthBarElement = document.getElementById("ehealth-bar");
+  const emptyBarElement = document.getElementById("eempty-bar");
+  const enemybar = document.getElementById("enemy-bar");
+  if (healthBars <= 0) {
+    enemybar.style.display = "none";
+    console.log("You win");
+  } else {
+    healthBarElement.textContent = "█".repeat(healthBars);
+    emptyBarElement.textContent = "░".repeat(emptyBars);
+  }
+}
+
 function battle() {
   let buttons = [
     "#backwardAcc",
@@ -292,7 +327,22 @@ function battle() {
     "#forwardClothes",
     "#battle",
   ];
-  wipefooter("Hack The World"); //name pending
+  wipefooter(`
+  <span id="main-bar">
+    Hackmann: 
+    <span id="health-bar" class="health-bar"></span>
+    <span id="empty-bar" class="empty-bar"></span>
+    <br>
+  </span>
+    <span id="enemy-bar">
+      Enemy: 
+      <span id="ehealth-bar" class="ehealth-bar"></span>
+      <span id="eempty-bar" class="eempty-bar"></span>
+    </span>
+  </span>
+`);
+  updateHealth(100);
+  updateeHealth(100);
   for (const selector of buttons) {
     document.querySelector(selector).style.display = "none";
   }
@@ -300,5 +350,36 @@ function battle() {
   hack_modifiers.push(".base");
   for (const image of hack_modifiers) {
     document.querySelector(image).style.top = "500px";
+  }
+}
+
+const mainHealthStart = 130;
+const enemyHealthStart = 60;
+const mainAttackMod = 0.5;
+const enemyAttackMod = 1;
+let mainHealth = mainHealthStart;
+let enemyHealth = enemyHealthStart;
+
+function turn() {
+  // H attack
+  hackAttack();
+
+  if (enemyHealth > 0) {
+    // E attack
+    enemyAttack();
+  }
+
+  function hackAttack() {
+    dmg = Math.floor((Math.random() * 5 + 6) * mainAttackMod);
+    console.log("Hackmann did " + dmg + " damage");
+    enemyHealth = enemyHealth - dmg;
+    updateeHealth(Math.floor((enemyHealth / enemyHealthStart) * 100));
+  }
+
+  function enemyAttack() {
+    dmg = Math.floor((Math.random() * 5 + 6) * enemyAttackMod);
+    console.log("Enemy did " + dmg + " damage");
+    mainHealth = mainHealth - dmg;
+    updateHealth(Math.floor((mainHealth / mainHealthStart) * 100));
   }
 }
