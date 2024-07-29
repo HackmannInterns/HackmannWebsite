@@ -2,7 +2,7 @@ const style = document.createElement("style");
 style.textContent = `
     .text-overlay {
         opacity: 1;
-        transition: opacity 1s ease-in-out;
+        transition: opacity 500ms ease-in-out;
         text-shadow: 
           -1px -1px 0 #000,  
           1px -1px 0 #000,
@@ -10,12 +10,10 @@ style.textContent = `
           1px  1px 0 #000;
 }
     }
-
     .fade-in {
         opacity: 1;
         display: block;
     }
-
     .fade-out {
         opacity: 0;
         display: block;
@@ -24,7 +22,6 @@ style.textContent = `
 document.head.append(style);
 
 window.onload = function () {
-  // replaceChildrenById("links");
   document.getElementById("nav-bar").remove();
   document.querySelector(".return").style.display = "block";
   document.querySelector(".return").onclick = function () {
@@ -496,8 +493,8 @@ function fade(fadeEle) {
     setTimeout(() => {
       fadeEle.classList.remove("fade-out");
       fadeEle.style.display = "none";
-    }, 1000);
-  }, 1000);
+    }, 500);
+  }, 500);
 }
 
 class Enemy {
