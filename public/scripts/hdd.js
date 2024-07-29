@@ -1,3 +1,28 @@
+const style = document.createElement("style");
+style.textContent = `
+    .text-overlay {
+        opacity: 1;
+        transition: opacity 1s ease-in-out;
+        text-shadow: 
+          -1px -1px 0 #000,  
+          1px -1px 0 #000,
+          -1px  1px 0 #000,
+          1px  1px 0 #000;
+}
+    }
+
+    .fade-in {
+        opacity: 1;
+        display: block;
+    }
+
+    .fade-out {
+        opacity: 0;
+        display: block;
+    }
+`;
+document.head.append(style);
+
 window.onload = function () {
   // replaceChildrenById("links");
   document.getElementById("nav-bar").remove();
@@ -63,6 +88,8 @@ window.onload = function () {
 
   content.appendChild(document.createElement("div"));
 };
+
+let enemy = null;
 
 function add_head_arrow() {
   const img = document.createElement("img");
@@ -352,8 +379,7 @@ function battle() {
   for (const image of hack_modifiers) {
     document.querySelector(image).style.top = "500px";
   }
-
-  const enemy = new Enemy();
+  enemy = new Enemy();
 }
 
 const mainHealthStart = 130;
@@ -373,18 +399,94 @@ function turn() {
   }
 
   function hackAttack() {
-    dmg = Math.floor((Math.random() * 5 + 6) * mainAttackMod);
+    let crit = Math.floor(Math.random() * 10) === 0;
+    let miss = Math.floor(Math.random() * 10) === 0;
+    console.log("HackM crit " + crit + "; miss " + miss);
+    let dmg =
+      Math.floor((Math.random() * 5 + 6) * mainAttackMod) *
+      (crit ? 2 : miss ? 0 : 1);
     console.log("Hackmann did " + dmg + " damage");
+
+    const container = enemy.element;
+    const container2 = document.querySelector("#content");
+    const modifier = crit ? "Crit<br>" : miss ? "Miss<br>" : "";
+    const textOverlay = createTextOverlay(container2, `${modifier}-` + dmg);
+    randomPosition(textOverlay, container);
+    fade(textOverlay);
+
     enemyHealth = enemyHealth - dmg;
     updateeHealth(Math.floor((enemyHealth / enemyHealthStart) * 100));
   }
 
   function enemyAttack() {
-    dmg = Math.floor((Math.random() * 5 + 6) * enemyAttackMod);
+    let crit = Math.floor(Math.random() * 10) === 0;
+    let miss = Math.floor(Math.random() * 10) === 0;
+    console.log("Enemy crit " + crit + "; miss " + miss);
+    let dmg =
+      Math.floor((Math.random() * 5 + 6) * enemyAttackMod) *
+      (crit ? 2 : miss ? 0 : 1);
     console.log("Enemy did " + dmg + " damage");
+
+    const container = document.querySelector("#content > img.base");
+    const container2 = document.querySelector("#content");
+    const modifier = crit ? "Crit<br>" : miss ? "Miss<br>" : "";
+    const textOverlay = createTextOverlay(container2, `${modifier}-` + dmg);
+    randomPosition(textOverlay, container);
+    fade(textOverlay);
+
     mainHealth = mainHealth - dmg;
     updateHealth(Math.floor((mainHealth / mainHealthStart) * 100));
   }
+}
+
+function randomPosition(element, container) {
+  const containerWidth = container.clientWidth;
+  const containerHeight = container.clientHeight;
+  const elementWidth = element.offsetWidth;
+  const elementHeight = element.offsetHeight;
+  const containerLeft = container.getBoundingClientRect().left;
+  const containerTop = container.getBoundingClientRect().top;
+
+  let x = Math.random() * (containerWidth - elementWidth);
+  x = x + containerLeft;
+  let y = Math.random() * (containerHeight - elementHeight);
+  y = y + containerTop;
+
+  element.style.left = `${x}px`;
+  element.style.top = `${y}px`;
+}
+
+function createTextOverlay(container, text) {
+  const textElement = document.createElement("p");
+  textElement.className = "text-overlay";
+  textElement.innerHTML = text;
+
+  textElement.style.zIndex = 900;
+  textElement.style.position = "absolute";
+  textElement.style.display = "true";
+  textElement.style.color = "red";
+  textElement.style.fontWeight = "Bolder";
+  textElement.style.fontSize = "40px";
+  textElement.style.pointerEvents = "none";
+  textElement.style.whiteSpace = "nowrap";
+
+  container.appendChild(textElement);
+  return textElement;
+}
+
+function fade(fadeEle) {
+  fadeEle.style.display = "block";
+  fadeEle.classList.add("fade-in");
+
+  setTimeout(() => {
+    fadeEle.classList.remove("fade-in");
+    fadeEle.classList.add("fade-out");
+
+    setTimeout(() => {
+      fadeEle.classList.remove("fade-out");
+      fadeEle.style.display = "none";
+    }, 1000);
+  }, 1000);
 }
 
 class Enemy {
@@ -399,15 +501,17 @@ class Enemy {
 
   constructor() {
     this.img = this.setImage();
-    console.log(this.img);
     this.element = document.querySelector(this.img);
-    console.log(this.element);
     this.element.style.display = "block";
     this.element.style.height = "300px";
     this.element.style.width = "300px";
     this.element.style.position = "absolute";
     this.element.style.left = "calc(50% - 150px)";
     this.element.style.top = "50px";
+    this.element.zIndex = 0;
+    this.element.onclick = function () {
+      turn();
+    };
   }
 
   setImage(min = 0, max = this.array_of_enemies.length) {
