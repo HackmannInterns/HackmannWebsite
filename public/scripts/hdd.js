@@ -21,6 +21,8 @@ style.textContent = `
 `;
 document.head.append(style);
 
+const content = document.getElementById("content");
+
 window.onload = function () {
   document.getElementById("nav-bar").remove();
   document.querySelector(".return").style.display = "block";
@@ -34,7 +36,6 @@ window.onload = function () {
   wipefooter("Hackmann Dressup Doll");
   window.removeEventListener("resize", window.hideNavBarOnSmallScreens);
 
-  const content = document.getElementById("content");
   content.style.display = "grid";
   content.style.gridTemplateColumns = "auto 250px auto";
   content.style.gridTemplateRows = "115px 70px 70px";
@@ -55,27 +56,7 @@ window.onload = function () {
     const img = appendById("content", url_tup); // Assuming "content" is the ID
   }
 
-  add_back_head_arrow();
-
-  document.querySelector(".base").style.display = "block";
-
-  content.appendChild(document.createElement("div"));
-
-  add_head_arrow();
-
-  add_back_acc_arrow();
-
-  content.appendChild(document.createElement("div"));
-
-  add_acc_arrow();
-
-  add_back_clothes_arrow();
-
-  content.appendChild(document.createElement("div"));
-
-  add_clothes_arrow();
-
-  content.appendChild(document.createElement("div"));
+  add_arrows();
 
   const battleButton = document.createElement("button");
   battleButton.id = "battle";
@@ -88,82 +69,42 @@ window.onload = function () {
 
 let enemy = null;
 
-function add_head_arrow() {
-  const img = document.createElement("img");
-  img.src = "https://images2.imgbox.com/55/4f/MQ0iqZOH_o.png";
-  img.onclick = function (event) {
-    cycle(event);
-  };
-  const element = document.getElementById("content"); // Use the ID provided
-  element.appendChild(img);
-  // img.style.
-  img.id = "forwardHead";
-  img.style.zIndex = 1;
-  img.style.marginTop = "50px";
-}
+function add_arrows() {
+  idNames = [
+    "forwardHead",
+    "backwardHead",
+    "forwardAcc",
+    "backwardAcc",
+    "forwardClothes",
+    "backwardClothes",
+  ];
+  document.querySelector(".base").style.display = "block";
 
-function add_back_head_arrow() {
-  const img = document.createElement("img");
-  img.src = "https://images2.imgbox.com/55/4f/MQ0iqZOH_o.png";
-  img.onclick = function (event) {
-    cycle(event);
-  };
-  const element = document.getElementById("content"); // Use the ID provided
-  element.appendChild(img);
-  img.style.zIndex = 1;
-  img.id = "backwardHead";
-  img.style.transform = "scaleX(-1)";
-  img.style.marginTop = "50px";
-}
+  for (let i = 0; i < idNames.length; i++) {
+    add_arrow(i);
+    i++;
+    content.appendChild(document.createElement("div"));
+    add_arrow(i);
+  }
+  content.appendChild(document.createElement("div"));
 
-function add_acc_arrow() {
-  const img = document.createElement("img");
-  img.src = "https://images2.imgbox.com/55/4f/MQ0iqZOH_o.png";
-  img.onclick = function (event) {
-    cycle(event);
-  };
-  const element = document.getElementById("content"); // Use the ID provided
-  element.appendChild(img);
-  img.style.zIndex = 1;
-  img.id = "forwardAcc";
-}
-
-function add_back_acc_arrow() {
-  const img = document.createElement("img");
-  img.src = "https://images2.imgbox.com/55/4f/MQ0iqZOH_o.png";
-  img.onclick = function (event) {
-    cycle(event);
-  };
-  const element = document.getElementById("content"); // Use the ID provided
-  element.appendChild(img);
-  img.id = "backwardAcc";
-  img.style.zIndex = 1;
-  img.style.transform = "scaleX(-1)";
-}
-
-function add_clothes_arrow() {
-  const img = document.createElement("img");
-  img.src = "https://images2.imgbox.com/55/4f/MQ0iqZOH_o.png";
-  img.onclick = function (event) {
-    cycle(event);
-  };
-  const element = document.getElementById("content"); // Use the ID provided
-  element.appendChild(img);
-  img.style.zIndex = 1;
-  img.id = "forwardClothes";
-}
-
-function add_back_clothes_arrow() {
-  const img = document.createElement("img");
-  img.src = "https://images2.imgbox.com/55/4f/MQ0iqZOH_o.png";
-  img.onclick = function (event) {
-    cycle(event);
-  };
-  const element = document.getElementById("content"); // Use the ID provided
-  element.appendChild(img);
-  img.style.zIndex = 1;
-  img.id = "backwardClothes";
-  img.style.transform = "scaleX(-1)";
+  function add_arrow(i) {
+    const img = document.createElement("img");
+    img.src = "https://images2.imgbox.com/55/4f/MQ0iqZOH_o.png";
+    img.onclick = function (event) {
+      cycle(event);
+    };
+    const element = document.getElementById("content");
+    element.appendChild(img);
+    img.id = idNames[i];
+    img.style.zIndex = 1;
+    if (i <= 1) {
+      img.style.marginTop = "50px";
+    }
+    if (i % 2 == 0) {
+      img.style.transform = "scaleX(-1)";
+    }
+  }
 }
 
 let headCtr = 0;
@@ -182,102 +123,55 @@ const hack_modifiers = [
 function cycle(event) {
   const clickedButton = event.target;
 
-  const hack_modifiers_clothes = ["none", ".priest", ".drug", ".drip"];
-
   const hack_modifiers_head = ["none", ".xxxhair", ".gasmask", ".pokehat"];
 
   const hack_modifiers_access = ["none", ".bible"];
 
-  if (clickedButton.id == "forwardHead" || clickedButton.id == "backwardHead") {
-    hack_modifiers_head.forEach((element) => {
-      if (element != "none") {
-        document.querySelector(element).style.display = "none";
-      }
-    });
-  }
-  if (clickedButton.id == "forwardAcc" || clickedButton.id == "backwardAcc") {
-    hack_modifiers_access.forEach((element) => {
-      if (element != "none") {
-        document.querySelector(element).style.display = "none";
-      }
-    });
-  }
-  if (
-    clickedButton.id == "forwardClothes" ||
-    clickedButton.id == "backwardClothes"
-  ) {
-    hack_modifiers_clothes.forEach((element) => {
-      if (element != "none") {
-        document.querySelector(element).style.display = "none";
-      }
-    });
-  }
+  const hack_modifiers_clothes = ["none", ".priest", ".drug", ".drip"];
 
-  if (clickedButton.id == "forwardHead") {
+  hack_modifiers.forEach((mod) => {
+    document.querySelector(mod).style.display = "none";
+  });
+
+  if (clickedButton.id === "forwardHead") {
     headCtr = (headCtr + 1) % hack_modifiers_head.length;
-  } else if (clickedButton.id == "backwardHead") {
-    headCtr--;
-    if (headCtr < 0) {
-      headCtr = hack_modifiers_head.length - 1;
-    }
+  } else if (clickedButton.id === "backwardHead") {
+    headCtr =
+      (headCtr - 1 + hack_modifiers_head.length) % hack_modifiers_head.length;
   }
 
-  if (clickedButton.id == "forwardAcc") {
+  if (clickedButton.id === "forwardAcc") {
     accessCtr = (accessCtr + 1) % hack_modifiers_access.length;
-  } else if (clickedButton.id == "backwardAcc") {
-    accessCtr--;
-    if (accessCtr < 0) {
-      accessCtr = hack_modifiers_access.length - 1;
-    }
+  } else if (clickedButton.id === "backwardAcc") {
+    accessCtr =
+      (accessCtr - 1 + hack_modifiers_access.length) %
+      hack_modifiers_access.length;
   }
 
-  if (clickedButton.id == "forwardClothes") {
+  if (clickedButton.id === "forwardClothes") {
     clothesCtr = (clothesCtr + 1) % hack_modifiers_clothes.length;
-  } else if (clickedButton.id == "backwardClothes") {
-    clothesCtr--;
-    if (clothesCtr < 0) {
-      clothesCtr = hack_modifiers_clothes.length - 1;
-    }
+  } else if (clickedButton.id === "backwardClothes") {
+    clothesCtr =
+      (clothesCtr - 1 + hack_modifiers_clothes.length) %
+      hack_modifiers_clothes.length;
   }
 
   if (hack_modifiers_head[headCtr] != "none") {
-    const headElement = document.querySelector(hack_modifiers_head[headCtr]);
-    if (
-      (headElement && clickedButton.id == "forwardHead") ||
-      clickedButton.id == "backwardHead"
-    ) {
-      headElement.style.display = "block";
-    }
+    headElement = document.querySelector(
+      hack_modifiers_head[headCtr]
+    ).style.display = "block";
   }
 
   if (hack_modifiers_access[accessCtr] != "none") {
-    const accessElement = document.querySelector(
+    const accessElement = (document.querySelector(
       hack_modifiers_access[accessCtr]
-    );
-    if (
-      (accessElement && clickedButton.id == "forwardAcc") ||
-      clickedButton.id == "backwardAcc"
-    ) {
-      accessElement.style.display = "block";
-    }
+    ).style.display = "block");
   }
 
   if (hack_modifiers_clothes[clothesCtr] != "none") {
-    const clothesElement = document.querySelector(
+    const clothesElement = (document.querySelector(
       hack_modifiers_clothes[clothesCtr]
-    );
-    if (
-      (clothesElement && clickedButton.id == "forwardClothes") ||
-      clickedButton.id == "backwardClothes"
-    ) {
-      clothesElement.style.display = "block";
-    }
-  }
-}
-
-function clearPage() {
-  while (document.body.firstChild) {
-    document.body.removeChild(document.body.firstChild);
+    ).style.display = "block");
   }
 }
 
@@ -285,13 +179,10 @@ function wipefooter(text) {
   document.querySelector("footer").innerHTML = text;
 }
 
-//clears children, needs to add a 2nd parameter to replace with
 function replaceChildrenById(id) {
-  // Get the element by ID
   const element = document.getElementById(id);
 
   if (element) {
-    // Replace all child nodes with new content
     element.replaceChildren();
   }
 }
@@ -300,7 +191,7 @@ function appendById(id, image) {
   const img = document.createElement("img");
   img.src = image[0];
   img.className = image[1];
-  const element = document.getElementById(id); // Use the ID provided
+  const element = document.getElementById(id);
   element.appendChild(img);
 
   img.style.display = "none";
@@ -310,46 +201,57 @@ function appendById(id, image) {
   return img;
 }
 
-function updateHealth(percentage) {
+function updateeHealth(percentage) {
+  updateHealth(percentage, "ehealth-bar", "eempty-bar", "enemy-bar", "win");
+}
+
+function updatehHealth(percentage) {
+  updateHealth(percentage, "health-bar", "empty-bar", "main-bar", "lose");
+}
+
+function updateHealth(
+  percentage,
+  healthBarId,
+  emptyBarId,
+  barId,
+  winCondition
+) {
   const totalBars = 20; // Total number of bars
   const healthBars = Math.round((percentage / 100) * totalBars);
   const emptyBars = totalBars - healthBars;
 
-  const healthBarElement = document.getElementById("health-bar");
-  const emptyBarElement = document.getElementById("empty-bar");
-  const mainbar = document.getElementById("main-bar");
+  const healthBarElement = document.getElementById(healthBarId);
+  const emptyBarElement = document.getElementById(emptyBarId);
+  const barElement = document.getElementById(barId);
+
   if (healthBars <= 0) {
-    mainbar.style.display = "none";
-    enemy.element.onclick = function() {};
+    barElement.style.display = "none";
+    enemy.element.onclick = function () {};
+    if (winCondition === "lose") {
+      lose();
+    } else {
+      win();
+    }
+  } else {
+    healthBarElement.textContent = "█".repeat(healthBars);
+    emptyBarElement.textContent = "░".repeat(emptyBars);
+  }
+
+  function win() {
+    enemy.element.style.display = "none";
+    wipefooter("You WIN");
+    document.querySelector("footer").style.fontSize = "100px";
+    document.querySelector("footer").style.color = "green";
+  }
+
+  function lose() {
     hack_modifiers.push(".base");
     for (const image of hack_modifiers) {
       document.querySelector(image).style.display = "none";
     }
     wipefooter("You Lose");
-    document.querySelector("footer").style.color = "red"
-    document.querySelector("footer").style.fontSize = "100px"
-  } else {
-    healthBarElement.textContent = "█".repeat(healthBars);
-    emptyBarElement.textContent = "░".repeat(emptyBars);
-  }
-}
-function updateeHealth(percentage) {
-  const totalBars = 20;
-  const healthBars = Math.round((percentage / 100) * totalBars);
-  const emptyBars = totalBars - healthBars;
-  const healthBarElement = document.getElementById("ehealth-bar");
-  const emptyBarElement = document.getElementById("eempty-bar");
-  const enemybar = document.getElementById("enemy-bar");
-  if (healthBars <= 0) {
-    enemybar.style.display = "none";
-    enemy.element.onclick = function() {};
-    enemy.element.style.display = "none";
-    wipefooter("You WIN");
-    document.querySelector("footer").style.color = "green"
-    document.querySelector("footer").style.fontSize = "100px"
-  } else {
-    healthBarElement.textContent = "█".repeat(healthBars);
-    emptyBarElement.textContent = "░".repeat(emptyBars);
+    document.querySelector("footer").style.fontSize = "100px";
+    document.querySelector("footer").style.color = "red";
   }
 }
 
@@ -377,7 +279,7 @@ function battle() {
     </span>
   </span>
 `);
-  updateHealth(100);
+  updatehHealth(100);
   updateeHealth(100);
   for (const selector of buttons) {
     document.querySelector(selector).style.display = "none";
@@ -394,56 +296,60 @@ const mainHealthStart = 130;
 const enemyHealthStart = 60;
 const mainAttackMod = 0.5;
 const enemyAttackMod = 1;
-let mainHealth = mainHealthStart;
-let enemyHealth = enemyHealthStart;
+let mainHealth = { value: mainHealthStart };
+let enemyHealth = { value: enemyHealthStart };
 
 function turn() {
-  // H attack
   hackAttack();
 
-  if (enemyHealth > 0) {
-    // E attack
+  if (enemyHealth.value > 0) {
     enemyAttack();
   }
 
-  function hackAttack() {
+  function performAttack(
+    attackMod,
+    container,
+    container2Selector,
+    health,
+    healthStart,
+    updateHealthFunc
+  ) {
     let crit = Math.floor(Math.random() * 10) === 0;
     let miss = Math.floor(Math.random() * 10) === 0;
-    console.log("HackM crit " + crit + "; miss " + miss);
     let dmg =
-      Math.floor((Math.random() * 5 + 6) * mainAttackMod) *
+      Math.floor((Math.random() * 5 + 6) * attackMod) *
       (crit ? 2 : miss ? 0 : 1);
-    console.log("Hackmann did " + dmg + " damage");
 
-    const container = enemy.element;
-    const container2 = document.querySelector("#content");
+    const container2 = document.querySelector(container2Selector);
     const modifier = crit ? "Crit<br>" : miss ? "Miss<br>" : "";
     const textOverlay = createTextOverlay(container2, `${modifier}-` + dmg);
     randomPosition(textOverlay, container);
     fade(textOverlay);
 
-    enemyHealth = enemyHealth - dmg;
-    updateeHealth(Math.floor((enemyHealth / enemyHealthStart) * 100));
+    health.value = health.value - dmg;
+    updateHealthFunc(Math.floor((health.value / healthStart) * 100));
+  }
+
+  function hackAttack() {
+    performAttack(
+      mainAttackMod,
+      enemy.element,
+      "#content",
+      enemyHealth,
+      enemyHealthStart,
+      updateeHealth
+    );
   }
 
   function enemyAttack() {
-    let crit = Math.floor(Math.random() * 10) === 0;
-    let miss = Math.floor(Math.random() * 10) === 0;
-    console.log("Enemy crit " + crit + "; miss " + miss);
-    let dmg =
-      Math.floor((Math.random() * 5 + 6) * enemyAttackMod) *
-      (crit ? 2 : miss ? 0 : 1);
-    console.log("Enemy did " + dmg + " damage");
-
-    const container = document.querySelector("#content > img.base");
-    const container2 = document.querySelector("#content");
-    const modifier = crit ? "Crit<br>" : miss ? "Miss<br>" : "";
-    const textOverlay = createTextOverlay(container2, `${modifier}-` + dmg);
-    randomPosition(textOverlay, container);
-    fade(textOverlay);
-
-    mainHealth = mainHealth - dmg;
-    updateHealth(Math.floor((mainHealth / mainHealthStart) * 100));
+    performAttack(
+      enemyAttackMod,
+      document.querySelector("#content > img.base"),
+      "#content",
+      mainHealth,
+      mainHealthStart,
+      updatehHealth
+    );
   }
 }
 
