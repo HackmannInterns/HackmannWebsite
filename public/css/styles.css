@@ -51,19 +51,19 @@ html {
 }
 
 #banner {
-  width: 518px; 
+  width: 518px;
   height: 250px;
 }
 
 @media (max-width: 768px) {
   #banner {
     width: 60%;
-    height: 20%
+    height: 20%;
   }
 }
 
 #profile-pic {
   display: inline-block;
-  width: 125px; 
-  height: 200px; 
+  width: 125px;
+  height: 200px;
 }
