@@ -28,6 +28,7 @@
 
 #content p {
   text-align: left;
+  display: inline-flex;
 }
 
 #content h4, h5 {
@@ -59,4 +60,10 @@ html {
     width: 60%;
     height: 20%
   }
+}
+
+#profile-pic {
+  display: inline-block;
+  width: 125px; 
+  height: 200px; 
 }
