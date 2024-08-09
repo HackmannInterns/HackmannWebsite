@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Summer 2024</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="images/hackfavicon.png">
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body>
+  <div id="flex-container">
+    <div><%- include('partials/navbar'); %></div>
+    <div id="content">
+      <h1>Team of Summer 2024</h1>
+      <% if (q=="THEBIGHACK" ) { %>
+        <script src="scripts/hdd.js"></script>
+        <% } %>
+          <h3>
+            The Team
+          </h3>
+          <p>
+            Summer 2024 was the first of the team of interns organized by John Hackmann. The group consisting of new college graduates: Alex Reynen, Jared Castillo, and John Whitney. They completed various projects, including developing a web application for a library database to organize books and creating this website.
+          </p>
+          <p>
+            This was largely defined by change and working with a large number of people while fielding various projects and developing the skills necessary for them
+          </p>
+          <h3>
+            Projects
+          </h3>
+          <h4>
+            Library Database
+          </h4>
+          <h5>
+            Links: <a href="https://www.github.com/hackmanninterns/bookshelfdb">Github</a>, <a href="https://hub.docker.com/r/alexreynen/bookshelfdb">DockerHub</a>, <a href="https://bdb.reynen.xyz">Live Demo Server</a>
+          </h5>
+          <p>Inspired by John Hackmann's 50,000+ books, the team created BookshelfBD. BookshelfDB is a self-hosted web application so you can catalog all your books in a neat, searchable and filterable user interface. The application uses Python as the main language for our development. Flask is used as our lightweight web framework, and Gunicorn is used to serve the application. DataTables is used to present the data held in our SQLite database in a dynamic and interactive way. Finally, Docker helps with easy and consistent deployment for the project across various environments.</p>
+          <br>
+          <h5>
+            Links: <a href="https://www.github.com/hackmanninterns/HackmannWebsite">Github</a>, <a href="https://hub.docker.com/r/alexreynen/hackmannwebsite">DockerHub</a>, <a href="/">Live Server</a>
+          </h5>
+          <p>The website is for providing information about the Hackmann internship experience for prospective interns. The backend is written in Node.js, using Express and EJS. While the site is fairly static, we use some JavaScript for styling and niceties.</p>
+    </div>
+  </div>
+  <div><%- include('partials/footer'); %></div>
+</body>
+
+</html>

@@ -1,0 +1,67 @@
+/*  openBaSeD.css */
+
+#flex-container {
+  font-family: Arial, sans-serif;
+  display: flex;
+  height: 100vh;
+  /* overflow: hidden; */
+}
+
+#content {
+  color: gainsboro;
+  text-align: center;
+  font-size: 30px;
+  flex: 1;
+  margin-left: 230px;
+  margin-bottom: 50px;
+  overflow: auto;
+  padding: 30px;
+  padding-top: 0px;
+}
+
+@media (max-width: 768px) {
+  #content {
+    margin-left: 0px;
+    padding: 10px;
+  }
+}
+
+#content p {
+  text-align: left;
+  display: inline-flex;
+}
+
+#content h4, h5 {
+  text-align: left;
+}
+
+#content a {
+  color: orange;
+}
+
+body {
+  background-color: #112131;
+}
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+#banner {
+  width: 518px;
+  height: 250px;
+}
+
+@media (max-width: 768px) {
+  #banner {
+    width: 60%;
+    height: 20%;
+  }
+}
+
+#profile-pic {
+  display: inline-block;
+}

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="images/hackfavicon.png">
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body>
+    <div id="flex-container">
+      <div id="navigator"><%- include('partials/navbar'); %></div>
+      <div id="content">
+        <img src="images/banner.png" width="600" height="200">
+        <h1><%= 'Hackmann Interns' %></h1>
+        <p>
+          The Hackmann Internship Project is a Palo Alto based initiative that connects new college graduates with unique internship opportunities. Interns will work on tech projects that enable them to develop industry-relevant skills and build meaningful connections both within and outside the tech sector.
+        </p>
+      </div>
+    </div>
+  </div>
+  <div><%- include('partials/footer'); %></div>
+</body>
+
+</html>
